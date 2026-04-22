@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>關西家族之旅 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --bg:       #F4F3F0;
+  --surface:  #FFFFFF;
+  --card:     #FFFFFF;
+  --ink:      #1C1917;
+  --ink2:     #57534E;
+  --muted:    #A8A29E;
+  --border:   #E7E5E1;
+  --border2:  #D6D3CE;
+  --accent:   #2D6A4F;   /* 深森林綠 — 沉穩、中性、有力 */
+  --accent-l: #EBF5EF;
+  --accent-d: #1B4332;
+  --amber:    #92400E;
+  --amber-l:  #FEF3C7;
+  --red:      #991B1B;
+  --red-l:    #FEE2E2;
+  --sky:      #1E40AF;
+  --sky-l:    #EFF6FF;
+  --shadow-s: 0 1px 3px rgba(28,25,23,0.06), 0 1px 2px rgba(28,25,23,0.04);
+  --shadow-m: 0 4px 16px rgba(28,25,23,0.08), 0 2px 4px rgba(28,25,23,0.04);
+  --r-sm:  10px;
+  --r-md:  14px;
+  --r-lg:  18px;
+  --r-xl:  22px;
+}
+
+* { -webkit-tap-highlight-color:transparent; box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  background: var(--bg);
+  font-family: 'Inter','Noto Sans TC',sans-serif;
+  color: var(--ink);
+  min-height: 100dvh;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── PAGE TRANSITIONS ── */
+.page { display:none; opacity:0; transform:translateY(6px); transition:opacity 0.25s ease, transform 0.25s ease; }
+.page.active { display:block; opacity:1; transform:translateY(0); }
+
+/* ── CARDS ── */
+.card { background:var(--card); border-radius:var(--r-lg); border:1px solid var(--border); box-shadow:var(--shadow-s); }
+.card-p { padding:18px 20px; }
+
+/* ── SECTION LABEL ── */
+.sec-lbl {
+  font-size:10.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:10px; margin-top:24px;
+}
+
+/* ── CHECKBOX ── */
+.custom-check { display:none; }
+.check-label { display:flex; align-items:flex-start; gap:12px; cursor:pointer; padding:11px 0; border-bottom:1px solid var(--border); }
+.check-label:last-child { border-bottom:none; }
+.check-box {
+  width:22px; height:22px; border-radius:6px; border:1.5px solid var(--border2);
+  flex-shrink:0; position:relative; transition:all 0.16s; background:white; margin-top:1px;
+}
+.check-box::after {
+  content:''; position:absolute; left:5px; top:2px;
+  width:8px; height:12px; border-right:2px solid white; border-bottom:2px solid white;
+  transform:rotate(45deg) scale(0); transition:transform 0.14s ease; transform-origin:center;
+}
+.custom-check:checked + .check-label .check-box { background:var(--accent); border-color:var(--accent); }
+.custom-check:checked + .check-label .check-box::after { transform:rotate(45deg) scale(0.8); }
+.custom-check:checked + .check-label .check-text { text-decoration:line-through; color:var(--muted); }
+
+/* ── DETAILS ── */
+details summary { list-style:none; cursor:pointer; user-select:none; }
+details summary::-webkit-details-marker { display:none; }
+details[open] .chev { transform:rotate(180deg); }
+.chev { transition:transform 0.2s ease; display:inline-block; }
+
+/* ── TIMELINE ── */
+.tl-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:5px; background:var(--border2); border:2px solid #C7C4BF; }
+.tl-dot.hi { background:var(--accent); border-color:var(--accent); box-shadow:0 0 0 3px rgba(45,106,79,0.15); }
+.tl-line { width:1px; background:var(--border); flex:1; margin:3px 0; min-height:20px; }
+
+/* ── BOTTOM NAV TABS ── */
+.tab-btn { background:none; border:none; cursor:pointer; transition:opacity 0.15s; }
+.tab-btn .t-lbl { font-size:10px; color:var(--muted); margin-top:3px; font-weight:600; transition:color 0.18s; font-family:inherit; letter-spacing:0.03em; }
+.tab-btn .t-ico { font-size:20px; transition:transform 0.18s; display:block; line-height:1; }
+.tab-btn.active .t-lbl { color:var(--accent); }
+.tab-btn.active .t-ico { transform:scale(1.1); }
+
+/* ── DAY PILLS ── */
+.day-tab {
+  display:inline-flex; flex-direction:column; align-items:center;
+  padding:6px 13px; border-radius:100px; border:1.5px solid var(--border2);
+  background:var(--surface); cursor:pointer; transition:all 0.16s ease;
+  font-family:inherit;
+}
+.day-tab.active { background:var(--accent); border-color:var(--accent); }
+.day-tab .dt-n { font-size:10px; font-weight:700; color:var(--ink2); letter-spacing:0.04em; }
+.day-tab .dt-d { font-size:10px; color:var(--muted); margin-top:1px; }
+.day-tab.active .dt-n, .day-tab.active .dt-d { color:white; }
+
+/* ── INPUTS ── */
+.inp {
+  width:100%; padding:11px 14px; border-radius:var(--r-sm);
+  border:1.5px solid var(--border); font-size:14px;
+  background:var(--bg); color:var(--ink); font-family:inherit;
+  transition:border-color 0.16s, box-shadow 0.16s;
+}
+.inp:focus { outline:none; border-color:var(--accent); background:white; box-shadow:0 0 0 3px rgba(45,106,79,0.1); }
+input::placeholder, textarea::placeholder { color:var(--muted); }
+
+/* ── BUTTONS ── */
+.btn-dark { width:100%; padding:13px; border-radius:var(--r-md); background:var(--ink); color:white; font-size:14px; font-weight:600; border:none; font-family:inherit; cursor:pointer; letter-spacing:0.02em; transition:opacity 0.15s; }
+.btn-dark:active { opacity:0.8; }
+.btn-add { padding:10px 18px; border-radius:var(--r-sm); background:var(--accent-l); color:var(--accent); font-size:15px; border:1.5px solid rgba(45,106,79,0.2); font-family:inherit; cursor:pointer; font-weight:700; transition:all 0.15s; }
+.btn-add:active { background:var(--accent); color:white; }
+.btn-ghost { padding:7px 13px; border-radius:100px; background:transparent; color:var(--ink2); font-size:12px; font-weight:600; border:1.5px solid var(--border2); font-family:inherit; cursor:pointer; transition:all 0.15s; white-space:nowrap; }
+.btn-ghost:active { background:var(--border); }
+
+/* ── LINK CARDS ── */
+.lnk { display:flex; align-items:center; gap:11px; padding:13px 14px; border-radius:var(--r-md); background:white; border:1px solid var(--border); box-shadow:var(--shadow-s); text-decoration:none; color:var(--ink); transition:all 0.15s; }
+.lnk:active { background:var(--bg); transform:scale(0.98); }
+.lnk-ico { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:17px; }
+
+/* ── BADGE / TAG ── */
+.tag { font-size:11px; padding:3px 9px; border-radius:100px; font-weight:600; display:inline-block; }
+.tag-g { background:var(--accent-l); color:var(--accent); }
+.tag-a { background:var(--amber-l); color:var(--amber); }
+.tag-r { background:var(--red-l); color:var(--red); }
+.tag-b { background:var(--sky-l); color:var(--sky); }
+.tag-n { background:var(--border); color:var(--ink2); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:3px; height:3px; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
+
+/* ── ANIMS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.fu  { animation:fadeUp 0.32s ease forwards; }
+.fu1 { animation-delay:0.04s; opacity:0; }
+.fu2 { animation-delay:0.08s; opacity:0; }
+.fu3 { animation-delay:0.12s; opacity:0; }
+.fu4 { animation-delay:0.16s; opacity:0; }
+.fu5 { animation-delay:0.20s; opacity:0; }
+
+/* ── EXPENSE IMG ── */
+.exp-img { width:48px; height:48px; object-fit:cover; border-radius:10px; flex-shrink:0; }
+
+/* ── DIVIDER ── */
+.div-line { height:1px; background:var(--border); margin:16px 0; }
+</style>
+</head>
+<body>
+
+<div id="app" style="max-width:448px; margin:0 auto; min-height:100dvh; display:flex; flex-direction:column;">
+
+  <!-- ══ HEADER ══ -->
+  <header style="position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:448px; z-index:50; background:rgba(244,243,240,0.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border);">
+    <div style="padding:13px 18px 9px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <div style="font-size:17px; font-weight:700; color:var(--ink); letter-spacing:-0.02em; line-height:1.2;">關西家族之旅</div>
+        <div style="font-size:11px; color:var(--muted); margin-top:2px; letter-spacing:0.01em;">Jul 18–23, 2026 &nbsp;·&nbsp; Kobe · Himeji · Osaka</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div style="text-align:right;">
+          <div style="font-size:12px; font-weight:700; color:var(--accent); letter-spacing:0.03em;">2026</div>
+          <div style="font-size:10px; color:var(--muted); margin-top:1px;">11大 · 7小</div>
+        </div>
+        <div style="width:34px; height:34px; border-radius:9px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:16px;">⛩️</div>
+      </div>
+    </div>
+    <div id="day-tabs-bar" style="padding:0 16px 10px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; -ms-overflow-style:none;">
+      <style>#day-tabs-bar::-webkit-scrollbar{display:none;}</style>
+      <div id="day-tabs-inner" style="display:inline-flex; gap:6px;"></div>
+    </div>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main id="main-scroll" style="flex:1; padding-top:126px; padding-bottom:88px; overflow-y:auto;">
+
+    <!-- FLIGHT PAGE -->
+    <div id="page-flight" class="page" style="padding:0 14px 8px;">
+      <div class="fu fu1" style="padding:20px 0 10px;">
+        <div style="font-size:22px; font-weight:700; color:var(--ink); letter-spacing:-0.02em;">航班資訊</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:3px;">STARLUX Airlines 星宇航空</div>
+      </div>
+
+      <div class="sec-lbl fu fu1">去程</div>
+      <div class="card fu fu2" style="overflow:hidden; margin-bottom:10px;">
+        <div style="background:var(--ink); padding:14px 20px; display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:16px;">⭐</div>
+            <div>
+              <div style="font-size:13px; font-weight:700; color:white; letter-spacing:0.06em;">STARLUX</div>
+              <div style="font-size:10px; color:rgba(255,255,255,0.5); margin-top:1px;">星宇航空</div>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:15px; font-weight:700; color:#D4A853; letter-spacing:0.1em;">JX834</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.45); margin-top:1px;">經濟艙 · 超值</div>
+          </div>
+        </div>
+        <div class="card-p">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+            <div style="text-align:center;">
+              <div style="font-size:32px; font-weight:700; color:var(--ink); letter-spacing:-2px; line-height:1;">06:50</div>
+              <div style="font-size:13px; font-weight:700; color:var(--ink2); margin-top:4px;">TPE</div>
+              <div style="font-size:11px; color:var(--muted); margin-top:2px;">桃園機場</div>
+            </div>
+            <div style="flex:1; padding:0 14px; display:flex; flex-direction:column; align-items:center; gap:5px;">
+              <div style="font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.04em;">2h 40m</div>
+              <div style="display:flex; align-items:center; width:100%; gap:6px;">
+                <div style="height:1px; flex:1; background:var(--border2);"></div>
+                <div style="color:var(--ink2); font-size:14px;">✈</div>
+                <div style="height:1px; flex:1; background:var(--border2);"></div>
+              </div>
+              <div style="font-size:10px; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">直飛</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:32px; font-weight:700; color:var(--ink); letter-spacing:-2px; line-height:1;">10:30</div>
+              <div style="font-size:13px; font-weight:700; color:var(--ink2); margin-top:4px;">UKB</div>
+              <div style="font-size:11px; color:var(--muted); margin-top:2px;">神戶機場</div>
+            </div>
+          </div>
+          <div style="background:var(--bg); border-radius:9px; padding:9px 13px; font-size:12px; color:var(--ink2); font-weight:500; text-align:center;">2026年 7月 18日（六）</div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu3">回程</div>
+      <div class="card fu fu3" style="overflow:hidden; margin-bottom:16px;">
+        <div style="background:var(--ink); padding:14px 20px; display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:16px;">⭐</div>
+            <div>
+              <div style="font-size:13px; font-weight:700; color:white; letter-spacing:0.06em;">STARLUX</div>
+              <div style="font-size:10px; color:rgba(255,255,255,0.5); margin-top:1px;">星宇航空</div>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:15px; font-weight:700; color:#D4A853; letter-spacing:0.1em;">JX823</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.45); margin-top:1px;">經濟艙 · 超值</div>
+          </div>
+        </div>
+        <div class="card-p">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+            <div style="text-align:center;">
+              <div style="font-size:32px; font-weight:700; color:var(--ink); letter-spacing:-2px; line-height:1;">15:10</div>
+              <div style="font-size:13px; font-weight:700; color:var(--ink2); margin-top:4px;">KIX</div>
+              <div style="font-size:11px; color:var(--muted); margin-top:2px;">關西機場</div>
+            </div>
+            <div style="flex:1; padding:0 14px; display:flex; flex-direction:column; align-items:center; gap:5px;">
+              <div style="font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.04em;">2h 55m</div>
+              <div style="display:flex; align-items:center; width:100%; gap:6px;">
+                <div style="height:1px; flex:1; background:var(--border2);"></div>
+                <div style="color:var(--ink2); font-size:14px;">✈</div>
+                <div style="height:1px; flex:1; background:var(--border2);"></div>
+              </div>
+              <div style="font-size:10px; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">直飛</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:32px; font-weight:700; color:var(--ink); letter-spacing:-2px; line-height:1;">17:05</div>
+              <div style="font-size:13px; font-weight:700; color:var(--ink2); margin-top:4px;">TPE</div>
+              <div style="font-size:11px; color:var(--muted); margin-top:2px;">桃園機場</div>
+            </div>
+          </div>
+          <div style="background:var(--bg); border-radius:9px; padding:9px 13px; font-size:12px; color:var(--ink2); font-weight:500; text-align:center;">2026年 7月 23日（四）</div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu3">行李規定</div>
+      <div class="card fu fu4" style="overflow:hidden; margin-bottom:10px;">
+        <div style="background:var(--accent); padding:11px 18px;">
+          <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.9); letter-spacing:0.08em; text-transform:uppercase;">STARLUX · 經濟艙超值方案</div>
+        </div>
+        <div class="card-p">
+          <div style="display:flex; gap:8px; margin-bottom:18px;">
+            <div style="flex:1; background:var(--sky-l); border-radius:var(--r-sm); padding:12px 8px; text-align:center;">
+              <div style="font-size:11px; font-weight:700; color:var(--sky); letter-spacing:0.04em;">上機 2件</div>
+              <div style="font-size:20px; font-weight:700; color:var(--ink); margin-top:4px; letter-spacing:-0.5px;">7 kg</div>
+              <div style="font-size:10px; color:var(--muted); margin-top:2px;">兩件合計</div>
+            </div>
+            <div style="flex:1; background:var(--accent-l); border-radius:var(--r-sm); padding:12px 8px; text-align:center;">
+              <div style="font-size:11px; font-weight:700; color:var(--accent); letter-spacing:0.04em;">託運 1件</div>
+              <div style="font-size:20px; font-weight:700; color:var(--ink); margin-top:4px; letter-spacing:-0.5px;">23 kg</div>
+              <div style="font-size:10px; color:var(--muted); margin-top:2px;">長寬高 ≤ 158cm</div>
+            </div>
+          </div>
+          <div class="div-line"></div>
+          <div style="margin-bottom:14px;">
+            <div style="font-size:12px; font-weight:700; color:var(--ink); margin-bottom:9px;">手提行李 ＋ 個人物品</div>
+            <div style="background:var(--bg); border-radius:var(--r-sm); padding:12px 14px; font-size:12px; color:var(--ink2); line-height:2;">
+              <span style="font-weight:600;">① 手提行李（登機箱）</span><br/>
+              &nbsp;&nbsp;56 × 36 × 23 cm 以內（含輪把）· 頭頂艙<br/>
+              <span style="font-weight:600;">② 個人物品</span><br/>
+              &nbsp;&nbsp;40 × 30 × 15 cm 以內 · 前座椅下<br/>
+              &nbsp;&nbsp;手提包 / 電腦包 / 相機包 / 小背包
+            </div>
+            <div style="background:var(--amber-l); border-radius:var(--r-sm); padding:9px 13px; margin-top:8px; font-size:12px; color:var(--amber); font-weight:600;">⚠ 兩件合計不超過 7 kg，建議出發前在家先秤好</div>
+          </div>
+          <div class="div-line"></div>
+          <div>
+            <div style="font-size:12px; font-weight:700; color:var(--ink); margin-bottom:9px;">行動電源</div>
+            <div style="background:var(--bg); border-radius:var(--r-sm); padding:12px 14px; font-size:12px; color:var(--ink2); line-height:1.8;">
+              僅限隨身攜帶（<strong>嚴禁放入託運</strong>）<br/>
+              容量 ≤ 100 Wh（約 27,000 mAh）→ 可帶，每人不限數量
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu4">搭機注意事項</div>
+      <div class="card fu fu5" style="margin-bottom:8px;">
+        <div class="card-p" style="padding-bottom:14px;">
+          <div id="flight-tips-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN PAGE -->
+    <div id="page-plan" class="page active" style="padding:0 14px 8px;">
+      <div id="itinerary-container"></div>
+    </div>
+
+    <!-- WALLET PAGE -->
+    <div id="page-wallet" class="page" style="padding:0 14px 8px;">
+      <div class="fu fu1" style="padding:20px 0 10px;">
+        <div style="font-size:22px; font-weight:700; color:var(--ink); letter-spacing:-0.02em;">旅遊記帳</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:3px;">記錄每一筆花費</div>
+      </div>
+
+      <div class="card fu fu2">
+        <div class="card-p">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:700; color:var(--ink);">匯率換算</div>
+            <span class="tag tag-g">JPY → TWD</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <div style="flex:1;">
+              <div style="font-size:11px; color:var(--muted); margin-bottom:5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">日幣 ¥</div>
+              <input id="jpy-input" class="inp" type="text" inputmode="decimal" placeholder="980+1200+550"/>
+            </div>
+            <div style="color:var(--border2); padding-top:18px; font-size:18px; font-weight:300;">→</div>
+            <div style="flex:1;">
+              <div style="font-size:11px; color:var(--muted); margin-bottom:5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">台幣 NT$</div>
+              <div id="twd-result" style="padding:11px 14px; border-radius:var(--r-sm); border:1.5px solid var(--border); font-size:15px; font-weight:700; color:var(--accent); background:var(--accent-l); min-height:44px;">—</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; padding:10px 13px; border-radius:var(--r-sm); background:var(--bg); border:1px solid var(--border);">
+            <span style="font-size:12px; color:var(--muted);">1 JPY</span>
+            <span style="font-size:12px; color:var(--border2);">=</span>
+            <input id="exchange-rate" type="number" step="0.001" style="width:68px; padding:4px 9px; border-radius:7px; border:1.5px solid var(--border); font-size:13px; color:var(--ink); background:white; text-align:center; font-family:inherit;"/>
+            <span style="font-size:12px; color:var(--muted);">TWD</span>
+            <button onclick="saveRate()" style="margin-left:auto; padding:5px 13px; border-radius:100px; background:var(--accent); color:white; font-size:11px; font-weight:700; border:none; cursor:pointer; font-family:inherit; letter-spacing:0.04em;">儲存</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu2" style="margin-top:20px;">新增消費</div>
+      <div class="card fu fu3">
+        <div class="card-p">
+          <div style="display:flex; gap:12px; margin-bottom:12px;">
+            <label for="expense-photo" style="cursor:pointer; width:74px; height:74px; border-radius:var(--r-md); border:1.5px dashed var(--border2); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; background:var(--bg); gap:5px; transition:all 0.15s;">
+              <span style="font-size:20px;">📷</span>
+              <span style="font-size:10px; color:var(--muted); font-weight:600; letter-spacing:0.04em;">拍照</span>
+            </label>
+            <input type="file" id="expense-photo" accept="image/*" capture="environment" style="display:none;"/>
+            <div id="photo-preview" style="display:none; width:74px; height:74px; border-radius:var(--r-md); overflow:hidden; flex-shrink:0; position:relative;">
+              <img id="photo-img" style="width:100%; height:100%; object-fit:cover;"/>
+              <button onclick="clearPhoto()" style="position:absolute; top:3px; right:3px; width:19px; height:19px; border-radius:50%; background:rgba(0,0,0,0.5); color:white; border:none; font-size:10px; cursor:pointer;">✕</button>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+              <input id="expense-name" class="inp" type="text" placeholder="品項名稱"/>
+              <input id="expense-amount" class="inp" type="text" inputmode="decimal" placeholder="¥ 金額 or 算式"/>
+            </div>
+          </div>
+          <button class="btn-dark" onclick="addExpense()">新增記錄</button>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:24px; margin-bottom:10px;">
+        <div class="sec-lbl" style="margin:0;">消費紀錄</div>
+        <div id="total-display" style="font-size:12px; color:var(--accent); font-weight:700;"></div>
+      </div>
+      <div id="expense-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+    </div>
+
+    <!-- LISTS PAGE -->
+    <div id="page-lists" class="page" style="padding:0 14px 8px;">
+      <div class="fu fu1" style="padding:20px 0 10px;">
+        <div style="font-size:22px; font-weight:700; color:var(--ink); letter-spacing:-0.02em;">出發清單</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:3px;">打勾即完成</div>
+      </div>
+
+      <div class="sec-lbl fu fu1">必備物品</div>
+      <div class="card fu fu2">
+        <div class="card-p" style="padding-bottom:12px;">
+          <div id="packing-list"></div>
+          <div style="display:flex; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border);">
+            <input id="new-packing" class="inp" type="text" placeholder="新增物品…" style="flex:1;"/>
+            <button class="btn-add" onclick="addPackingItem()">＋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu3">必買清單</div>
+      <div class="card fu fu3">
+        <div class="card-p" style="padding-bottom:12px;">
+          <div id="shopping-list"></div>
+          <div style="display:flex; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border);">
+            <input id="new-shopping" class="inp" type="text" placeholder="新增商品…" style="flex:1;"/>
+            <button class="btn-add" onclick="addShoppingItem()">＋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu4">備忘</div>
+      <div class="card fu fu4" style="margin-bottom:8px;">
+        <div class="card-p">
+          <textarea id="memo-text" rows="5" placeholder="記下任何想記住的事…" style="width:100%; border:none; resize:none; font-size:14px; line-height:1.8; color:var(--ink); background:transparent; font-family:inherit; outline:none;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO PAGE -->
+    <div id="page-info" class="page" style="padding:0 14px 8px;">
+      <div class="fu fu1" style="padding:20px 0 10px;">
+        <div style="font-size:22px; font-weight:700; color:var(--ink); letter-spacing:-0.02em;">旅遊資訊</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:3px;">隨時查閱，安心出發</div>
+      </div>
+
+      <!-- Visit Japan Web -->
+      <div class="card fu fu1" style="overflow:hidden; margin-bottom:4px;">
+        <div style="background:var(--ink); padding:13px 18px; display:flex; align-items:center; justify-content:space-between;">
+          <div>
+            <div style="font-size:13px; font-weight:700; color:white; letter-spacing:0.02em;">Visit Japan Web</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:2px; letter-spacing:0.04em;">日本入境線上申報 — 出發前填寫</div>
+          </div>
+          <a href="https://vjw-lp.digital.go.jp/zh-hant/" target="_blank" style="display:flex; align-items:center; gap:5px; padding:8px 14px; border-radius:100px; background:var(--accent); color:white; font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap; letter-spacing:0.02em;">立即填寫 →</a>
+        </div>
+        <div class="card-p" style="padding-top:14px; padding-bottom:14px;">
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">1</div>
+              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">前往官網建立帳號（填入 Email + 密碼）</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">2</div>
+              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">新增旅行：填寫<strong>抵達日期（7/18）、航班號（JX834）、日本住所</strong>（填神戶住宿地址）</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">3</div>
+              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">完成<strong>入境審查</strong>及<strong>海關申報</strong>，取得 QR Code</div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">4</div>
+              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">入境時出示 QR Code + 護照給海關掃描，<strong>免填紙本入境卡</strong></div>
+            </div>
+          </div>
+          <div style="background:var(--bg); border-radius:var(--r-sm); padding:10px 13px; border:1px solid var(--border);">
+            <div style="font-size:12px; color:var(--ink2); line-height:1.7;">
+              <strong style="color:var(--ink);">神戶機場（UKB）說明</strong><br/>
+              支援 VJW，但目前無專用快速通道。仍走一般外國人通道，出示 QR Code 給海關人員掃描即可，免填紙本表格。<br/>
+              <span style="color:var(--muted); font-size:11px; margin-top:4px; display:block;">建議搭機前先將 QR Code 截圖存到手機相簿，避免落地時無網路</span>
+            </div>
+          </div>
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <a href="https://debbiechien.com/visit-japan-web/" target="_blank" style="flex:1; display:flex; align-items:center; justify-content:center; gap:5px; padding:9px 0; border-radius:var(--r-sm); border:1.5px solid var(--border); background:white; text-decoration:none; font-size:12px; font-weight:600; color:var(--ink2);">📖 圖解教學</a>
+            <a href="https://www.klook.com/zh-TW/blog/quarantine-immigration-japan/" target="_blank" style="flex:1; display:flex; align-items:center; justify-content:center; gap:5px; padding:9px 0; border-radius:var(--r-sm); border:1.5px solid var(--border); background:white; text-decoration:none; font-size:12px; font-weight:600; color:var(--ink2);">📝 Klook 攻略</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-lbl fu fu1">快速連結</div>
+      <div class="fu fu2" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px;">
+        <a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#EFF6FF;">🌤️</div>
+          <span style="font-size:13px; font-weight:600;">關西天氣</span>
+        </a>
+        <a href="https://www.google.com/maps" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#F0FDF4;">🗺️</div>
+          <span style="font-size:13px; font-weight:600;">Google 地圖</span>
+        </a>
+        <a href="https://www.jr-odekake.net/railroad/traininfo/area/5/" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#FFFBEB;">🚃</div>
+          <span style="font-size:13px; font-weight:600;">電車查詢</span>
+        </a>
+        <a href="https://www.kansai-airport.or.jp/tw/" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#F5F3FF;">✈️</div>
+          <span style="font-size:13px; font-weight:600;">關西機場</span>
+        </a>
+        <a href="https://www.klook.com/zh-TW/blog/%E6%97%A5%E6%9C%AC%E9%80%80%E7%A8%85%E6%94%BB%E7%95%A5/" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#FFF7ED;">🧾</div>
+          <span style="font-size:13px; font-weight:600;">退稅資訊</span>
+        </a>
+        <a href="https://www.google.com/search?q=ICOCA+購買" target="_blank" class="lnk">
+          <div class="lnk-ico" style="background:#EFF6FF;">💳</div>
+          <span style="font-size:13px; font-weight:600;">ICOCA 卡</span>
+        </a>
+      </div>
+
+      <div class="sec-lbl fu fu3">緊急聯絡</div>
+      <div class="card fu fu3"><div id="emergency-contacts"></div></div>
+
+      <div class="sec-lbl fu fu3">住宿資訊</div>
+      <div id="hotel-info-cards" class="fu fu4"></div>
+
+      <div class="sec-lbl fu fu4">全員規則</div>
+      <div class="card fu fu4"><div class="card-p"><div id="trip-rules"></div></div></div>
+
+      <div class="sec-lbl fu fu5">旅行提醒</div>
+      <div id="travel-tips" class="fu fu5" style="display:flex; flex-direction:column; gap:8px; margin-bottom:8px;"></div>
+    </div>
+
+  </main>
+
+  <!-- ══ BOTTOM NAV ══ -->
+  <nav style="position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:448px; z-index:50; background:rgba(255,255,255,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-top:1px solid var(--border); padding-bottom:env(safe-area-inset-bottom,0px);">
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); padding:8px 0 5px;">
+      <button class="tab-btn" onclick="switchTab('flight',this)" style="display:flex; flex-direction:column; align-items:center; padding:5px 0;">
+        <span class="t-ico">✈️</span><span class="t-lbl">機票</span>
+      </button>
+      <button class="tab-btn active" onclick="switchTab('plan',this)" style="display:flex; flex-direction:column; align-items:center; padding:5px 0;">
+        <span class="t-ico">🗾</span><span class="t-lbl">行程</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('wallet',this)" style="display:flex; flex-direction:column; align-items:center; padding:5px 0;">
+        <span class="t-ico">💴</span><span class="t-lbl">記帳</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('lists',this)" style="display:flex; flex-direction:column; align-items:center; padding:5px 0;">
+        <span class="t-ico">☑️</span><span class="t-lbl">清單</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('info',this)" style="display:flex; flex-direction:column; align-items:center; padding:5px 0;">
+        <span class="t-ico">📋</span><span class="t-lbl">資訊</span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+const DAYS = [
+  {
+    day:1, date:'7/18（六）', title:'神戶入境', subtitle:'動物王國 ＋ 麵包超人 ＋ MOSAIC', transport:'包車', color:'#2D6A4F',
+    hotel:'神戶中央區 Kotonoocho / Minatocho',
+    schedule:[
+      {time:'10:30', title:'✈️ 神戶機場抵達', note:'入境 + 提領行李約 1 小時，包車在出口等候。', hi:true},
+      {time:'12:00', title:'🦙 神戶動物王國', note:'先到餐廳用午餐，13:00 開始動物互動（草泥馬、水豚）。'},
+      {time:'14:30', title:'🦅 飛鳥秀', note:'觀賞飛鳥秀（約 30 分鐘）。'},
+      {time:'15:30', title:'🍞 麵包超人兒童博物館', note:'館內逛遊 + 表演（約 2 小時）。'},
+      {time:'17:30', title:'🎡 馬賽克摩天輪', note:'排隊短則搭乘，長則跳過拍照。'},
+      {time:'17:50', title:'📸 BE KOBE 地標合照', note:'海港前拍大合照留念。', hi:true},
+      {time:'18:20', title:'🍽️ MOSAIC 港區晚餐', note:'享用晚餐後包車返回住宿（約 20 分鐘）。'},
+      {time:'19:30', title:'🏨 返回住宿', note:'神戶中央區', hi:true},
+    ],
+    tips:['攜帶：護照、水壺、防曬、帽子、舒適步鞋。','全天包車，行李放車上，無需擔心。','走散集合點：包車停車處（出發前帶隊者告知）。'],
+  },
+  {
+    day:2, date:'7/19（日）', title:'姬路 → 神戶', subtitle:'姬路城 ＋ 北野異人館 ＋ 神戶牛排', transport:'包車', color:'#1E40AF',
+    hotel:'神戶中央區（連住）',
+    schedule:[
+      {time:'08:30', title:'🚐 出發 → 姬路城', note:'包車，車程約 1 小時 15 分，孩子可在車上補眠。', hi:true},
+      {time:'09:45', title:'🏯 姬路城 世界遺產', note:'自由遊覽（約 2 小時）。可登天守閣或庭園散步拍照。⭐ 指定地點大合照。'},
+      {time:'12:00', title:'🍜 城前商店街午餐', note:'在商店街自由選擇餐廳（停留約 1 小時）。'},
+      {time:'13:00', title:'🚐 出發 → 神戶', note:'包車返回神戶（車程約 1 小時），孩子可午睡。'},
+      {time:'14:00', title:'⛩️ 北野天滿神社 + 異人館街', note:'從山頂往下散步最輕鬆！自由逛（約 1.5 小時）。'},
+      {time:'15:30', title:'🐄 六甲牧場 霜淇淋', note:'享用牧場現做霜淇淋（停留約 30 分鐘）。'},
+      {time:'17:30', title:'🥩 Steak Land 神戶牛排', note:'A5 神戶牛現場鐵板燒！（待預約）', hi:true},
+      {time:'19:30', title:'🏨 返回住宿', note:'步行或包車（JR 三宮附近）。', hi:true},
+    ],
+    tips:['姬路城石板路多，請穿舒適步鞋，推車可走庭園。','⚠️ Steak Land 神戶牛排尚待預約，請確認後告知大家。','明天（7/20）要退房搬行李到大阪，請提前整理好行李。'],
+  },
+  {
+    day:3, date:'7/20（一）', title:'勝尾寺 → 大阪', subtitle:'日清泡麵館 ＋ 太陽之塔 → 移住大阪', transport:'包車', color:'#92400E',
+    hotel:'大阪西成區 花園町站',
+    alert:'今日退房 — 行李放上包車移動',
+    schedule:[
+      {time:'08:00', title:'🧳 神戶住宿退房', note:'所有行李放上包車，確認無遺漏。', hi:true},
+      {time:'09:30', title:'⛩️ 勝尾寺 勝運達摩寺', note:'達摩擺設超有特色必拍！石板坡道，請穿舒適步鞋。（停留約 2 小時）'},
+      {time:'11:30', title:'🍱 勝尾寺境內午餐', note:'在境內茶屋或周邊餐廳用餐（約 1 小時）。'},
+      {time:'13:00', title:'🍜 日清泡麵發明紀念館（池田）', note:'展區 + 自製泡麵體驗 My Cup Noodles Factory（約 ¥500）。停留約 2 小時。'},
+      {time:'15:30', title:'🌞 萬博紀念公園 太陽之塔', note:'70 年代世博遺址！太陽之塔打卡，旁有 EXPOCITY 購物。'},
+      {time:'18:00', title:'🍽️ 花園町周邊晚餐', note:'大阪西成區附近，鄰近鶴橋韓國城，自由選擇餐廳。'},
+      {time:'19:00', title:'🏨 大阪住宿入住（花園町站）', note:'辦理 Check-in，確認房間分配。⚠️ 明天起自行搭地鐵！', hi:true},
+    ],
+    tips:['勝尾寺石板坡道 → 舒適步鞋必備。','日清泡麵體驗約 ¥500，帶現金備用。','太陽之塔內部需預約，外部免費參觀。','⚠️ 明天起自行搭地鐵！確認 ICOCA/Suica 餘額充足。'],
+  },
+  {
+    day:4, date:'7/21（二）', title:'大阪城 → 梅田', subtitle:'LINKS UMEDA ＋ Mizuno 旗艦店 ＋ 居酒屋', transport:'地鐵', color:'#2D6A4F',
+    hotel:'大阪西成區（花園町）',
+    schedule:[
+      {time:'07:50', title:'🚇 出發', note:'花園町站 3B 號電梯進站，搭四橋線。', hi:true},
+      {time:'08:15', title:'本町換乘（中央線）', note:'⚠️ 換乘距離長！跟著指標「エレベーター」走（約 10–15 分鐘）。孩子走大人中間。'},
+      {time:'09:00', title:'🚂 Road Train 搭乘', note:'搭小火車前往天守閣省體力！口訣：森之宮進城搭小火車。'},
+      {time:'09:20', title:'🏯 大阪城天守閣 ⭐ 大合照', note:'天守閣前拍 13 人大合照！自由遊覽至 10:30，大手門集合。', hi:true},
+      {time:'10:55', title:'谷町線 → 東梅田站', note:'3 站直達，約 6 分鐘。口訣：谷町四丁目出城上梅田。'},
+      {time:'11:20', title:'🛍️ LINKS UMEDA 午餐 + 購物', note:'8F 餐廳午餐，4F 鞋類，1–2F UNIQLO。⭐ 走散集合點：7F 電梯口｜15:00 集合。'},
+      {time:'15:00', title:'👟 Mizuno 大阪茶屋町旗艦店', note:'7 層樓全品項！跑步、棒球、高爾夫、足球、游泳。15:50 廣播集合，16:00 出發。'},
+      {time:'16:00', title:'地下街 → 大阪站前第 2 大樓', note:'全程冷氣！金券店、玩具公仔各式商店自由逛。'},
+      {time:'18:00', title:'🍺 B1/B2 居酒屋街晚餐', note:'昭和懷舊風格，平價豐富！', hi:true},
+      {time:'19:30', title:'🚇 西梅田 → 花園町 回程', note:'四橋線直達花園町，約 10 分鐘。無需轉乘。', hi:true},
+    ],
+    tips:['本町換乘距離長，慢慢走！指標非常清楚。','走散集合點：LINKS UMEDA 7F 電梯口。','大環保袋準備好，購物戰利品統一裝入。','退稅需護照，購物前確認是否有退稅服務。'],
+  },
+  {
+    day:5, date:'7/22（三）', title:'難波 · 道頓堀', subtitle:'八阪神社 ＋ ABC-MART ＋ 唐吉訶德掃貨', transport:'地鐵', color:'#1E40AF',
+    hotel:'大阪西成區（花園町）',
+    schedule:[
+      {time:'08:45', title:'🚇 出發', note:'花園町站 3B 號電梯，四橋線直達難波（2 站）。', hi:true},
+      {time:'09:15', title:'難波站 Y15 出站', note:'⚠️ 走 Exit 30（有電梯），避免 Exit 32（無電梯）。'},
+      {time:'09:30', title:'⛩️ 難波八阪神社', note:'巨型獅子頭建築超震撼！⭐ 13 人大合照。停留約 30 分鐘。', hi:true},
+      {time:'11:00', title:'👟 ABC-MART GRAND STAGE 買鞋', note:'補買鞋款（停留約 1 小時）。12:00 出發往戎橋。'},
+      {time:'12:10', title:'📸 戎橋固力果打卡 + 午餐', note:'⭐ 固力果招牌前拍 13 人大合照！就近餐廳分桌午餐（約 1 小時）。', hi:true},
+      {time:'13:30', title:'🛍️ 分組血拼', note:'A 組：心齋橋藥妝、服飾。B 組：Fishing Max 難波釣具（Exit 6，可退稅，帶護照）。16:00 唐吉訶德集合。'},
+      {time:'16:15', title:'⭐ 唐吉訶德道頓堀 全員大會合', note:'🎡 黃色摩天輪正下方集合！Exit 14 步行 2–5 分鐘。', hi:true},
+      {time:'17:30', title:'🛒 唐吉訶德最後掃貨', note:'補買零食、雜貨、伴手禮（約 1 小時）。退稅需護照。18:20 門口集合。'},
+      {time:'18:30', title:'🚇 難波 → 花園町 回程', note:'⚠️ 嚴格走地面！Exit 26-B 進站，四橋線直達。滿載而歸！', hi:true},
+    ],
+    tips:['難波出站務必走 Exit 30（有電梯），勿走 Exit 32。','B 組去 Fishing Max 請帶護照（可辦退稅）。','唐吉訶德退稅記得帶護照，常大排長龍，提早排隊。','回程嚴格走地面四橋筋，Exit 26-B 進站，絕不走地下街。','走散集合點：唐吉訶德道頓堀 🎡 黃色摩天輪正下方。'],
+  },
+  {
+    day:6, date:'7/23（四）', title:'返程離境', subtitle:'花園町包車 → 關西空港（KIX）', transport:'包車', color:'#374151',
+    hotel:'',
+    schedule:[
+      {time:'退房', title:'🧳 大阪住宿退房', note:'所有行李整理完畢，確認房間無遺留。', hi:true},
+      {time:'包車', title:'🚐 花園町 → 關西空港', note:'車程約 40–50 分鐘。⚠️ 暑假旺季，建議提前 3 小時抵達！', hi:true},
+      {time:'機場', title:'✈️ 關西空港（KIX）', note:'退稅需商品＋收據＋護照。交通卡餘額可在機場售票機退款。', hi:true},
+    ],
+    tips:['護照隨身攜帶（有效期確認）','機票電子票確認','行李已整理，房間無遺留','退稅收據已備妥','交通卡餘額退款'],
+  },
+];
+
+const HOTELS = [
+  {period:'7/18–7/19', group:'媮家', address:'3 Chome-4-12 Kotonoocho, Chuo Ward, Kobe, Hyogo 651-0094', mapLink:'https://www.google.com/maps/search/?api=1&query=3%20Chome-4-12%20Kotonoocho%2C%20Chuo%20Ward%2C%20Kobe%2C%20Hyogo%20651-0094'},
+  {period:'7/18–7/19', group:'哥鴉', address:'4 Chome-1-11 Minatocho, Hyogo Ward, Kobe, Hyogo 652-0812', mapLink:'https://www.google.com/maps/search/?api=1&query=4%20Chome-1-11%20Minatocho%2C%20Hyogo%20Ward%2C%20Kobe%2C%20Hyogo%20652-0812'},
+  {period:'7/18–7/19', group:'其他人', address:'3-3-6 Ninomiyacho, Chuo Ward, Kobe, Hyogo 651-0093', mapLink:'https://www.google.com/maps/search/?api=1&query=3-3-6%20Ninomiyacho%2C%20Chuo%20Ward%2C%20Kobe%2C%20Hyogo%20651-0093'},
+  {period:'7/20–7/22', group:'全員', address:'1-3-19 Bainan, Nishinari Ward, Osaka 557-0033', mapLink:'https://www.google.com/maps/search/?api=1&query=1-3-19%20Bainan%2C%20Nishinari%20Ward%2C%20Osaka%20557-0033'},
+];
+
+const EMERGENCY = [
+  {label:'日本警察', number:'110', tag:'110'},
+  {label:'日本消防 / 救護', number:'119', tag:'119'},
+  {label:'外交部旅外急難救助', number:'+886-800-085-095', tag:'免費'},
+  {label:'遺失信用卡（VISA）', number:'0120-133-173', tag:'免費'},
+];
+
+const RULES = [
+  '走散時 → 不要找人！直接前往當日指定集合點等候帶隊者來接。',
+  '每次搭車前後請自動靠攏，配合帶隊者清點人數。',
+  '孩子務必走在大人中間，不可走最前或最後。',
+  '推車請跟著電梯指標走，各站均有電梯可使用。',
+  '購物退稅請攜帶護照（每次退稅都需要）。',
+  '交通卡（ICOCA 或 Suica）請保持餘額充足（建議 ¥2,000 以上）。',
+];
+
+const TIPS = [
+  {title:'網路 SIM 卡', body:'建議出發前購買日本 eSIM，抵達機場即可啟用，全程無縫上網。', link:null},
+  {title:'現金準備', body:'建議每人備 ¥20,000–¥30,000 現金，部分景點及小店不支援刷卡。', link:null},
+  {title:'旅遊保險', body:'出發前確認旅遊保險已生效，包含醫療、行李遺失、班機延誤等保障。', link:'https://www.insfeel.com.tw/article/%E6%97%A5%E6%9C%AC-%E6%97%85%E5%B9%B3%E9%9A%AA-%E6%9D%B1%E4%BA%AC%E6%B5%B7%E4%B8%8A%E6%97%A5%E5%8B%95?media_id=3859059551346462662_70204529095&media_author_id=70204529095&source_reply_media_id=3861127011700533827&ranking_info_token=GCA2NGRkZGJmNjIzZDI0MTI5OWYxM2NmMzNkMzZhZTgxYyWmsvQCJuqKqpwNGBMzODYxMTI3MDExNzAwNTMzODI3KANwcm4A&utm_source=ig_text_post_permalink'},
+];
+
+const DEFAULT_PACKING = ['護照（全員）','機票電子票確認信','ICOCA / Suica 交通卡','日幣現金','信用卡（Visa/Master）','手機 + 充電線','行動電源','日本 SIM 卡 / eSIM','防曬乳','帽子','舒適步鞋','雨傘 / 折疊雨衣','個人藥品','兒童推車','退稅護照'];
+const DEFAULT_SHOPPING = ['MUJI 無印良品 好物','ABC-MART 球鞋','Mizuno 運動用品','唐吉訶德零食','藥妝','泡麵伴手禮','六甲牧場奶製品','神戶牛相關伴手禮','退稅商品'];
+
+const FLIGHT_TIPS = [
+  {tip:'神戶機場（UKB）支援 Visit Japan Web，入境時出示 QR Code 給海關人員掃描，免填紙本入境卡。（目前無專用快速通道，仍走一般外國人通道，但不需排隊補填表格）'},
+  {tip:'隨身液體每瓶須 ≤ 100ml，裝入 1 公升透明夾鏈袋，每人 1 袋。'},
+  {tip:'剪刀、刀具、打火機等危險品禁止放隨身行李，可放託運行李。'},
+  {tip:'隨身藥品建議保留原始包裝，特殊藥品建議攜帶醫生證明。'},
+  {tip:'建議起飛前 2.5 小時抵達桃園機場，暑假旺季人多，預留充裕時間辦理報到。'},
+  {tip:'可提前在星宇官方 App 辦理線上 Check-in（起飛前 48 小時開放），選位並取得電子登機證。'},
+  {tip:'行動電源容量換算：mAh ÷ 2.7 ≈ Wh，確認不超過 100 Wh 即可隨身攜帶。'},
+  {tip:'嬰兒食品、奶粉不受 100ml 限制，安檢時向人員說明即可。'},
+];
+
+const DAY_LABELS = [{n:'D1',d:'7/18'},{n:'D2',d:'7/19'},{n:'D3',d:'7/20'},{n:'D4',d:'7/21'},{n:'D5',d:'7/22'},{n:'✈',d:'7/23'}];
+
+// ═══════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════
+function ls(k,def){try{const v=localStorage.getItem(k);return v?JSON.parse(v):def;}catch{return def;}}
+function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+let state = {
+  rate:     ls('trip_rate',0.218),
+  expenses: ls('trip_expenses',[]),
+  packing:  ls('trip_packing',  DEFAULT_PACKING.map(t=>({text:t,done:false}))),
+  shopping: ls('trip_shopping', DEFAULT_SHOPPING.map(t=>({text:t,done:false}))),
+  memo:     ls('trip_memo',''),
+};
+
+// ═══════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════
+function switchTab(name, btn) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  btn.classList.add('active');
+  const db=document.getElementById('day-tabs-bar');
+  const ms=document.getElementById('main-scroll');
+  if(name==='plan'){db.style.display='block';ms.style.paddingTop='126px';}
+  else{db.style.display='none';ms.style.paddingTop='72px';}
+  ms.scrollTop=0;
+}
+
+// ═══════════════════════════════════════
+// DAY TABS
+// ═══════════════════════════════════════
+let activeDayIndex=0;
+
+function initDayTabs(){
+  document.getElementById('day-tabs-inner').innerHTML=DAY_LABELS.map((l,i)=>
+    `<button class="day-tab${i===0?' active':''}" onclick="switchDay(${i})">
+      <span class="dt-n">${l.n}</span>
+      <span class="dt-d">${l.d}</span>
+    </button>`
+  ).join('');
+}
+
+function switchDay(i){
+  activeDayIndex=i;
+  document.querySelectorAll('.day-tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+  renderItinerary();
+  document.getElementById('main-scroll').scrollTop=0;
+}
+
+// ═══════════════════════════════════════
+// RENDER ITINERARY
+// ═══════════════════════════════════════
+function renderItinerary(){
+  const d=DAYS[activeDayIndex];
+  const c=d.color||'#2D6A4F';
+
+  document.getElementById('itinerary-container').innerHTML=`
+  <div class="fu fu1" style="margin-top:8px;">
+
+    <!-- Day header -->
+    <div style="margin-bottom:12px; padding:20px 18px; background:${c}; border-radius:var(--r-xl); position:relative; overflow:hidden;">
+      <div style="position:absolute; right:-24px; top:-24px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.06);"></div>
+      <div style="position:absolute; right:20px; bottom:-30px; width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,0.04);"></div>
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; position:relative; z-index:1;">
+        <div>
+          <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:6px;">DAY ${d.day} · ${d.transport}</div>
+          <div style="font-size:22px; font-weight:700; color:white; line-height:1.2; letter-spacing:-0.02em;">${d.title}</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.75); margin-top:5px; line-height:1.4;">${d.subtitle}</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px;">${d.date}</div>
+        </div>
+      </div>
+      ${d.alert?`<div style="margin-top:14px; padding:9px 13px; background:rgba(0,0,0,0.2); border-radius:9px; font-size:12px; color:rgba(255,255,255,0.9); font-weight:600; position:relative; z-index:1; letter-spacing:0.01em;">⚠ ${d.alert}</div>`:''}
+    </div>
+
+    <!-- Schedule -->
+    <div class="card" style="margin-bottom:10px; overflow:hidden;">
+      <div style="padding:16px 18px 6px;">
+        <div style="font-size:10.5px; font-weight:700; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:14px;">行程安排</div>
+        ${d.schedule.map((s,si)=>`
+          <div style="display:flex; gap:13px;">
+            <div style="display:flex; flex-direction:column; align-items:center; width:10px; flex-shrink:0;">
+              <div class="tl-dot${s.hi?' hi':''}" style="${s.hi?`background:${c}; border-color:${c}; box-shadow:0 0 0 3px ${c}20;`:''}"></div>
+              ${si<d.schedule.length-1?'<div class="tl-line"></div>':''}
+            </div>
+            <div style="flex:1; padding-bottom:${si<d.schedule.length-1?'2':'8'}px; min-width:0;">
+              <div style="display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; padding-top:0px;">
+                <span style="font-size:11.5px; font-weight:700; color:${s.hi?c:'var(--muted)'}; white-space:nowrap; font-variant-numeric:tabular-nums;">${s.time}</span>
+                <span style="font-size:14px; font-weight:600; color:var(--ink); line-height:1.35;">${s.title}</span>
+              </div>
+              ${s.note?`<div style="font-size:12.5px; color:var(--ink2); line-height:1.65; margin-top:3px; padding-bottom:${si<d.schedule.length-1?'10':'4'}px;">${s.note}</div>`:''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <details style="border-top:1px solid var(--border);">
+        <summary style="padding:12px 18px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:13px; font-weight:600; color:var(--ink2);">注意事項 / 集合點</span>
+          <span class="chev" style="color:var(--muted); font-size:11px; font-weight:600;">▾</span>
+        </summary>
+        <div style="padding:2px 18px 14px; background:var(--bg);">
+          ${d.tips.map(t=>`
+            <div style="display:flex; gap:8px; align-items:flex-start; padding:5px 0; border-bottom:1px solid var(--border);">
+              <div style="width:5px; height:5px; border-radius:50%; background:${c}; flex-shrink:0; margin-top:6px;"></div>
+              <span style="font-size:13px; color:var(--ink2); line-height:1.65;">${t}</span>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+
+      ${d.hotel?`
+      <div style="padding:10px 16px; background:var(--bg); border-top:1px solid var(--border); display:flex; align-items:center; gap:8px;">
+        <span style="font-size:11px; font-weight:700; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;">住宿</span>
+        <span style="font-size:12px; color:var(--ink2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${d.hotel}</span>
+      </div>`:''}
+    </div>
+
+    <!-- Prev / Next -->
+    <div style="display:flex; gap:8px; margin-bottom:8px;">
+      ${activeDayIndex>0?`<button onclick="switchDay(${activeDayIndex-1})" class="btn-ghost" style="flex:1; padding:11px; border-radius:var(--r-md);">← 上一天</button>`:'<div style="flex:1;"></div>'}
+      ${activeDayIndex<DAYS.length-1?`<button onclick="switchDay(${activeDayIndex+1})" style="flex:1; padding:11px; border-radius:var(--r-md); background:${c}; color:white; font-size:13px; font-weight:700; border:none; cursor:pointer; font-family:inherit; letter-spacing:0.01em;">下一天 →</button>`:'<div style="flex:1;"></div>'}
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════
+// LISTS
+// ═══════════════════════════════════════
+function renderList(type){
+  const key=type==='packing'?'packing':'shopping';
+  const items=state[key];
+  const el=document.getElementById(type+'-list');
+  if(!items.length){el.innerHTML=`<div style="padding:16px 0; text-align:center; font-size:13px; color:var(--muted);">尚無項目</div>`;return;}
+  el.innerHTML=items.map((item,i)=>`
+    <div>
+      <input type="checkbox" id="${type}-${i}" class="custom-check" ${item.done?'checked':''}
+        onchange="toggleItem('${type}',${i},this.checked)"/>
+      <label for="${type}-${i}" class="check-label">
+        <div class="check-box"></div>
+        <span class="check-text" style="font-size:14px; color:var(--ink); line-height:1.5; flex:1;">${item.text}</span>
+        <button onclick="event.preventDefault();deleteItem('${type}',${i})" style="padding:4px 6px; border:none; background:none; color:var(--muted); font-size:12px; flex-shrink:0; cursor:pointer;">✕</button>
+      </label>
+    </div>
+  `).join('');
+}
+function toggleItem(type,i,done){const k=type==='packing'?'packing':'shopping';state[k][i].done=done;ss('trip_'+k,state[k]);renderList(k);}
+function deleteItem(type,i){const k=type==='packing'?'packing':'shopping';state[k].splice(i,1);ss('trip_'+k,state[k]);renderList(k);}
+function addPackingItem(){const inp=document.getElementById('new-packing');const t=inp.value.trim();if(!t)return;state.packing.push({text:t,done:false});ss('trip_packing',state.packing);inp.value='';renderList('packing');}
+function addShoppingItem(){const inp=document.getElementById('new-shopping');const t=inp.value.trim();if(!t)return;state.shopping.push({text:t,done:false});ss('trip_shopping',state.shopping);inp.value='';renderList('shopping');}
+function initMemo(){const ta=document.getElementById('memo-text');ta.value=state.memo;ta.addEventListener('input',()=>{state.memo=ta.value;ss('trip_memo',state.memo);});}
+
+// ═══════════════════════════════════════
+// WALLET
+// ═══════════════════════════════════════
+function initWallet(){
+  document.getElementById('exchange-rate').value=state.rate;
+  document.getElementById('jpy-input').addEventListener('input',updateConversion);
+  renderExpenses();updateTotalDisplay();
+}
+function updateConversion(){
+  const raw=document.getElementById('jpy-input').value.trim();
+  if(!raw){document.getElementById('twd-result').textContent='—';return;}
+  try{const jpy=eval(raw.replace(/[^0-9+\-*/().]/g,''));if(isNaN(jpy)){document.getElementById('twd-result').textContent='—';return;}document.getElementById('twd-result').textContent='NT$ '+Math.round(jpy*state.rate).toLocaleString();}
+  catch{document.getElementById('twd-result').textContent='—';}
+}
+function saveRate(){const r=parseFloat(document.getElementById('exchange-rate').value);if(isNaN(r)||r<=0)return;state.rate=r;ss('trip_rate',r);updateConversion();updateTotalDisplay();renderExpenses();}
+let photoData=null;
+function clearPhoto(){photoData=null;document.getElementById('photo-preview').style.display='none';document.getElementById('expense-photo').value='';}
+function addExpense(){
+  const name=document.getElementById('expense-name').value.trim();
+  const raw=document.getElementById('expense-amount').value.trim();
+  if(!name||!raw)return;
+  let jpy=0;try{jpy=eval(raw.replace(/[^0-9+\-*/().]/g,''));}catch{}
+  if(isNaN(jpy)||jpy<=0){alert('請輸入有效金額');return;}
+  state.expenses.unshift({id:Date.now(),name,jpy:Math.round(jpy),twd:Math.round(jpy*state.rate),photo:photoData,time:new Date().toLocaleString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})});
+  ss('trip_expenses',state.expenses);
+  document.getElementById('expense-name').value='';document.getElementById('expense-amount').value='';document.getElementById('twd-result').textContent='—';
+  clearPhoto();renderExpenses();updateTotalDisplay();
+}
+function deleteExpense(id){state.expenses=state.expenses.filter(e=>e.id!==id);ss('trip_expenses',state.expenses);renderExpenses();updateTotalDisplay();}
+function renderExpenses(){
+  const el=document.getElementById('expense-list');
+  if(!state.expenses.length){el.innerHTML=`<div style="text-align:center; padding:32px 16px; color:var(--muted);"><div style="font-size:28px; margin-bottom:8px; opacity:0.5;">💴</div><div style="font-size:13px; font-weight:600;">尚無消費紀錄</div><div style="font-size:12px; margin-top:4px;">出發後開始記錄每一筆花費</div></div>`;return;}
+  el.innerHTML=state.expenses.map(e=>`
+    <div style="background:white; border-radius:var(--r-md); border:1px solid var(--border); padding:13px 14px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-s);">
+      ${e.photo?`<img src="${e.photo}" class="exp-img" alt=""/>`:`<div style="width:48px; height:48px; border-radius:10px; background:var(--bg); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:20px; color:var(--muted);">¥</div>`}
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:14px; font-weight:600; color:var(--ink);">${e.name}</div>
+        <div style="font-size:11px; color:var(--muted); margin-top:2px;">${e.time}</div>
+      </div>
+      <div style="text-align:right; flex-shrink:0; margin-right:6px;">
+        <div style="font-size:16px; font-weight:700; color:var(--accent);">¥${e.jpy.toLocaleString()}</div>
+        <div style="font-size:11px; color:var(--muted);">NT$${e.twd.toLocaleString()}</div>
+      </div>
+      <button onclick="deleteExpense(${e.id})" style="padding:6px; background:none; border:none; color:var(--muted); font-size:13px; cursor:pointer; flex-shrink:0;">✕</button>
+    </div>
+  `).join('');
+}
+function updateTotalDisplay(){const tj=state.expenses.reduce((s,e)=>s+e.jpy,0);const tt=Math.round(tj*state.rate);document.getElementById('total-display').textContent=tj>0?`合計 ¥${tj.toLocaleString()} / NT$${tt.toLocaleString()}`:''}
+
+// ═══════════════════════════════════════
+// INFO
+// ═══════════════════════════════════════
+function renderInfo(){
+  document.getElementById('emergency-contacts').innerHTML=EMERGENCY.map(e=>`
+    <a href="tel:${e.number}" style="display:flex; align-items:center; gap:12px; padding:12px 18px; text-decoration:none; transition:background 0.15s; border-bottom:1px solid var(--border);" onmouseenter="this.style.background='var(--bg)'" onmouseleave="this.style.background='transparent'">
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600; color:var(--ink);">${e.label}</div>
+        <div style="font-size:15px; color:var(--accent); font-weight:700; margin-top:2px; letter-spacing:0.04em;">${e.number}</div>
+      </div>
+      <span class="tag tag-n">${e.tag}</span>
+    </a>
+  `).join('').replace(/border-bottom[^;]+;(?=<\/a>\s*$)/,'');
+
+  // Group hotels by period
+  const groups = {};
+  HOTELS.forEach(h=>{if(!groups[h.period])groups[h.period]=[];groups[h.period].push(h);});
+  document.getElementById('hotel-info-cards').innerHTML=Object.entries(groups).map(([period,hotels])=>`
+    <div class="card" style="margin-bottom:10px; overflow:hidden;">
+      <div style="padding:10px 18px; background:var(--accent); display:flex; align-items:center; justify-content:space-between;">
+        <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.9); letter-spacing:0.08em; text-transform:uppercase;">${period}</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.6);">${period.includes('18')? '神戶中央區' : '大阪西成區 花園町'}</div>
+      </div>
+      ${hotels.map(h=>`
+        <div style="padding:12px 18px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+          <div style="min-width:0;">
+            ${hotels.length>1?`<div style="font-size:11px; font-weight:700; color:var(--muted); letter-spacing:0.06em; margin-bottom:4px;">${h.group}</div>`:''}
+            <div style="font-size:12px; color:var(--ink2); line-height:1.65;">${h.address}</div>
+          </div>
+          <a href="${h.mapLink}" target="_blank" style="display:flex; align-items:center; gap:4px; padding:6px 12px; border-radius:100px; background:var(--accent-l); text-decoration:none; color:var(--accent); font-size:11px; font-weight:700; white-space:nowrap; flex-shrink:0; border:1px solid rgba(45,106,79,0.2);">地圖</a>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  document.getElementById('trip-rules').innerHTML=RULES.map((r,i)=>`
+    <div style="display:flex; gap:10px; align-items:flex-start; padding:9px 0; ${i<RULES.length-1?'border-bottom:1px solid var(--border);':''}">
+      <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; font-weight:700; color:white;">${i+1}</div>
+      <span style="font-size:13.5px; color:var(--ink); line-height:1.65;">${r}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('travel-tips').innerHTML=TIPS.map(t=>`
+    <div class="card">
+      <div class="card-p" style="display:flex; gap:13px; align-items:flex-start;">
+        <div style="width:40px; height:40px; border-radius:10px; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <span style="color:white; font-size:13px; font-weight:700; letter-spacing:-0.02em;">${t.title.slice(0,1)}</span>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div style="font-size:14px; font-weight:700; color:var(--ink); margin-bottom:4px;">${t.title}</div>
+          <div style="font-size:13px; color:var(--ink2); line-height:1.65;">${t.body}</div>
+          ${t.link?`<a href="${t.link}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; margin-top:9px; font-size:12px; color:var(--accent); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(45,106,79,0.3); padding-bottom:1px;">查看參考文章 →</a>`:''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFlightTips(){
+  const el=document.getElementById('flight-tips-list');
+  if(!el)return;
+  el.innerHTML=FLIGHT_TIPS.map((t,i)=>`
+    <div style="display:flex; gap:10px; align-items:flex-start; padding:9px 0; ${i<FLIGHT_TIPS.length-1?'border-bottom:1px solid var(--border);':''}">
+      <div style="min-width:20px; height:20px; border-radius:5px; background:var(--accent-l); border:1px solid rgba(45,106,79,0.2); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; color:var(--accent);">${i+1}</div>
+      <span style="font-size:13px; color:var(--ink2); line-height:1.7;">${t.tip}</span>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded',function(){
+  initDayTabs();
+  renderItinerary();
+  renderList('packing');
+  renderList('shopping');
+  initMemo();
+  initWallet();
+  renderInfo();
+  renderFlightTips();
+
+  document.getElementById('expense-photo').addEventListener('change',function(e){
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{photoData=ev.target.result;document.getElementById('photo-img').src=photoData;document.getElementById('photo-preview').style.display='block';};
+    reader.readAsDataURL(file);
+  });
+  document.getElementById('new-packing').addEventListener('keypress',e=>{if(e.key==='Enter')addPackingItem();});
+  document.getElementById('new-shopping').addEventListener('keypress',e=>{if(e.key==='Enter')addShoppingItem();});
+});
+</script>
+</body>
+</html>
