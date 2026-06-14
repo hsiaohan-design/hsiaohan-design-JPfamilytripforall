@@ -505,6 +505,20 @@ input::placeholder, textarea::placeholder { color:var(--muted); }
           <div class="lnk-ico" style="background:#EFF6FF;">💳</div>
           <span style="font-size:13px; font-weight:600;">ICOCA 卡</span>
         </a>
+        <a href="https://s.beurlife.com/jp" target="_blank" class="lnk" style="grid-column:span 2;">
+          <div class="lnk-ico" style="background:#FEF3C7; font-size:20px;">🎫</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--ink);">日本優惠券懶人包</div>
+            <div style="font-size:11px; color:var(--muted); margin-top:2px;">藥妝、餐廳、景點折扣一次整理</div>
+          </div>
+        </a>
+        <a href="https://japanportal.donki-global.com/coupon/cp001_zhtw.html" target="_blank" class="lnk" style="grid-column:span 2;">
+          <div class="lnk-ico" style="background:#FEF9C3; font-size:20px;">🐧</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--ink);">唐吉訶德 驚安の殿堂</div>
+            <div style="font-size:11px; color:var(--muted); margin-top:2px;">官方優惠券，結帳直接出示</div>
+          </div>
+        </a>
       </div>
 
       <div class="sec-lbl fu fu3">緊急聯絡</div>
@@ -574,7 +588,7 @@ const DAYS = [
       {time:'13:00', title:'🚐 出發 → 神戶', note:'包車返回神戶（車程約 1 小時），孩子可午睡。'},
       {time:'14:00', title:'⛩️ 北野天滿神社 + 異人館街', note:'從山頂往下散步最輕鬆！自由逛（約 1.5 小時）。'},
       {time:'15:30', title:'🐄 六甲牧場 霜淇淋', note:'享用牧場現做霜淇淋（停留約 30 分鐘）。'},
-      {time:'17:30', title:'🥩 Steak Land 神戶牛排', note:'A5 神戶牛現場鐵板燒！（待預約）', hi:true},
+      {time:'17:30', title:'🥩 Steak Land 神戶牛排', note:'A5 神戶牛現場鐵板燒！（待預約）\n〒650-0012 兵庫県神戸市中央区北長狭通1-9-17 三宮興業ビル 6F', links:[{label:'Google Maps', url:'https://maps.app.goo.gl/L6rFGFYfNtuxfkqT8'},{label:'食評參考', url:'https://tabelog.com/tw/hyogo/A2801/A280101/28007302/'}], hi:true},
       {time:'19:30', title:'🏨 返回住宿', note:'步行或包車（JR 三宮附近）。', hi:true},
     ],
     tips:['姬路城石板路多，請穿舒適步鞋，推車可走庭園。','⚠️ Steak Land 神戶牛排尚待預約，請確認後告知大家。','明天（7/20）要退房搬行李到大阪，請提前整理好行李。'],
@@ -603,9 +617,9 @@ const DAYS = [
       {time:'09:00', title:'🚂 Road Train 搭乘', note:'搭小火車前往天守閣省體力！口訣：森之宮進城搭小火車。'},
       {time:'09:20', title:'🏯 大阪城天守閣 ⭐ 大合照', note:'天守閣前拍 13 人大合照！自由遊覽至 10:30，大手門集合。', hi:true},
       {time:'10:55', title:'谷町線 → 東梅田站', note:'3 站直達，約 6 分鐘。口訣：谷町四丁目出城上梅田。'},
-      {time:'11:20', title:'🛍️ LINKS UMEDA 午餐 + 購物', note:'8F 餐廳午餐，4F 鞋類，1–2F UNIQLO。⭐ 走散集合點：7F 電梯口｜15:00 集合。'},
-      {time:'15:00', title:'👟 Mizuno 大阪茶屋町旗艦店', note:'7 層樓全品項！跑步、棒球、高爾夫、足球、游泳。15:50 廣播集合，16:00 出發。'},
-      {time:'16:00', title:'地下街 → 大阪站前第 2 大樓', note:'全程冷氣！金券店、玩具公仔各式商店自由逛。'},
+      {time:'11:20', title:'🛍️ LINKS UMEDA 午餐 + 購物', note:'8F 餐廳午餐，4F coen服飾，1–2F UNIQLO。⭐ 走散集合點：7F 電梯口｜15:00 集合。', links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=LINKS+UMEDA'}]},
+      {time:'15:00', title:'👟 Mizuno 大阪茶屋町旗艦店', note:'7 層樓全品項！跑步、棒球、高爾夫、足球、游泳。15:50 廣播集合，16:00 出發。', links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=Mizuno+Osaka+Chayamachi'}]},
+      {time:'16:00', title:'地下街 → 大阪站前第 2 大樓', note:'全程冷氣！金券店、玩具公仔各式商店自由逛。', links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=Osaka+Ekimae+Daini+Building'}]},
       {time:'18:00', title:'🍺 B1/B2 居酒屋街晚餐', note:'昭和懷舊風格，平價豐富！', hi:true},
       {time:'19:30', title:'🚇 西梅田 → 花園町 回程', note:'四橋線直達花園町，約 10 分鐘。無需轉乘。', hi:true},
     ],
@@ -617,12 +631,12 @@ const DAYS = [
     schedule:[
       {time:'08:45', title:'🚇 出發', note:'花園町站 3B 號電梯，四橋線直達難波（2 站）。', hi:true},
       {time:'09:15', title:'難波站 Y15 出站', note:'⚠️ 走 Exit 30（有電梯），避免 Exit 32（無電梯）。'},
-      {time:'09:30', title:'⛩️ 難波八阪神社', note:'巨型獅子頭建築超震撼！⭐ 13 人大合照。停留約 30 分鐘。', hi:true},
-      {time:'11:00', title:'👟 ABC-MART GRAND STAGE 買鞋', note:'補買鞋款（停留約 1 小時）。12:00 出發往戎橋。'},
-      {time:'12:10', title:'📸 戎橋固力果打卡 + 午餐', note:'⭐ 固力果招牌前拍 13 人大合照！就近餐廳分桌午餐（約 1 小時）。', hi:true},
-      {time:'13:30', title:'🛍️ 分組血拼', note:'A 組：心齋橋藥妝、服飾。B 組：Fishing Max 難波釣具（Exit 6，可退稅，帶護照）。16:00 唐吉訶德集合。'},
-      {time:'16:15', title:'⭐ 唐吉訶德道頓堀 全員大會合', note:'🎡 黃色摩天輪正下方集合！Exit 14 步行 2–5 分鐘。', hi:true},
-      {time:'17:30', title:'🛒 唐吉訶德最後掃貨', note:'補買零食、雜貨、伴手禮（約 1 小時）。退稅需護照。18:20 門口集合。'},
+      {time:'09:30', title:'⛩️ 難波八阪神社', note:'巨型獅子頭建築超震撼！⭐ 13 人大合照。停留約 30 分鐘。', hi:true, links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=難波八阪神社'}]},
+      {time:'11:00', title:'👟 ABC-MART GRAND STAGE 買鞋', note:'補買鞋款（停留約 1 小時）。12:00 出發往戎橋。', links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=ABC-MART+GRAND+STAGE+難波'}]},
+      {time:'12:10', title:'📸 戎橋固力果打卡 + 午餐', note:'⭐ 固力果招牌前拍 13 人大合照！就近餐廳分桌午餐（約 1 小時）。', hi:true, links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=戎橋+Glico+Sign'}]},
+      {time:'13:30', title:'🛍️ 分組血拼', note:'A 組：心齋橋筋商店街藥妝、服飾。B 組：Fishing Max 難波釣具（御堂筋/千日前線難波7號出口約1分、四橋線難波31號出口約2分，可退稅，帶護照）。15:30收尾，16:15 唐吉訶德集合。', links:[{label:'心齋橋筋商店街', url:'https://www.google.com/maps/search/?api=1&query=心齋橋筋商店街'},{label:'Fishing Max なんば店', url:'https://www.google.com/maps/search/?api=1&query=Fishing+Max+なんば店'}]},
+      {time:'16:15', title:'⭐ 唐吉訶德道頓堀 全員大會合', note:'🎡 黃色摩天輪正下方集合！Exit 14 步行 2–5 分鐘。', hi:true, links:[{label:'Google Maps', url:'https://www.google.com/maps/search/?api=1&query=ドン・キホーテ+道頓堀店'},{label:'唐吉訶德必買清單', url:'https://donki-checklist.vercel.app/donki-osaka-kobe-checklist.html'}]},
+      {time:'17:30', title:'🛒 唐吉訶德最後掃貨', note:'補買零食、雜貨、伴手禮（約 1 小時）。退稅需護照。18:20 門口集合。', links:[{label:'唐吉訶德必買清單', url:'https://donki-checklist.vercel.app/donki-osaka-kobe-checklist.html'}]},
       {time:'18:30', title:'🚇 難波 → 花園町 回程', note:'⚠️ 嚴格走地面！Exit 26-B 進站，四橋線直達。滿載而歸！', hi:true},
     ],
     tips:['難波出站務必走 Exit 30（有電梯），勿走 Exit 32。','B 組去 Fishing Max 請帶護照（可辦退稅）。','唐吉訶德退稅記得帶護照，常大排長龍，提早排隊。','回程嚴格走地面四橋筋，Exit 26-B 進站，絕不走地下街。','走散集合點：唐吉訶德道頓堀 🎡 黃色摩天輪正下方。'],
@@ -774,7 +788,10 @@ function renderItinerary(){
                 <span style="font-size:11.5px; font-weight:700; color:${s.hi?c:'var(--muted)'}; white-space:nowrap; font-variant-numeric:tabular-nums;">${s.time}</span>
                 <span style="font-size:14px; font-weight:600; color:var(--ink); line-height:1.35;">${s.title}</span>
               </div>
-              ${s.note?`<div style="font-size:12.5px; color:var(--ink2); line-height:1.65; margin-top:3px; padding-bottom:${si<d.schedule.length-1?'10':'4'}px;">${s.note}</div>`:''}
+              ${s.note?`<div style="font-size:12.5px; color:var(--ink2); line-height:1.65; margin-top:3px; white-space:pre-line; padding-bottom:${si<d.schedule.length-1&&!s.links?'10':'4'}px;">${s.note}</div>`:''}
+              ${s.links?`<div style="display:flex; gap:7px; flex-wrap:wrap; margin-top:6px; padding-bottom:${si<d.schedule.length-1?'12':'4'}px;">
+                ${s.links.map(lk=>`<a href="${lk.url}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; padding:5px 11px; border-radius:100px; background:${c}15; border:1px solid ${c}30; text-decoration:none; font-size:11px; font-weight:600; color:${c}; white-space:nowrap;">${lk.label} ↗</a>`).join('')}
+              </div>`:''}
             </div>
           </div>
         `).join('')}
