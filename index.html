@@ -458,7 +458,7 @@ input::placeholder, textarea::placeholder { color:var(--muted); }
             </div>
             <div style="display:flex; gap:10px; align-items:flex-start;">
               <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">2</div>
-              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">新增旅行：填寫<strong>抵達日期（7/18）、航班號（JX834）、日本住所</strong>（填神戶住宿地址）</div>
+              <div style="font-size:13px; color:var(--ink2); line-height:1.6;">新增旅行：填寫<strong>抵達日期（7/18）、航班號（JX834）、日本住所</strong>（填<strong>自己組別</strong>的神戶住宿地址，各組不同，請對照下方「住宿資訊」）</div>
             </div>
             <div style="display:flex; gap:10px; align-items:flex-start;">
               <div style="min-width:22px; height:22px; border-radius:6px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:white; flex-shrink:0;">3</div>
@@ -485,7 +485,7 @@ input::placeholder, textarea::placeholder { color:var(--muted); }
 
       <div class="sec-lbl fu fu1">快速連結</div>
       <div class="fu fu2" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px;">
-        <a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" class="lnk">
+        <a href="https://www.google.com/search?q=大阪天氣" target="_blank" class="lnk">
           <div class="lnk-ico" style="background:#EFF6FF;">🌤️</div>
           <span style="font-size:13px; font-weight:600;">關西天氣</span>
         </a>
@@ -668,6 +668,7 @@ const EMERGENCY = [
   {label:'日本警察', number:'110', tag:'110'},
   {label:'日本消防 / 救護', number:'119', tag:'119'},
   {label:'外交部旅外急難救助', number:'+886-800-085-095', tag:'免費'},
+  {label:'台灣駐大阪辦事處', number:'+81-6-6443-8481', tag:'緊急'},
   {label:'遺失信用卡（VISA）', number:'0120-133-173', tag:'免費'},
 ];
 
