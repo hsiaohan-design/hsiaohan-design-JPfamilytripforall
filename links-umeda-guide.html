@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINKS UMEDA 重點戰區對照表</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Noto Sans TC", "Helvetica Neue", sans-serif;
+    background: #F2EDE4;
+    color: #2c2c2c;
+    padding: 20px 16px 40px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 6px;
+  }
+  .header-tag {
+    display: inline-block;
+    background: #C84B31;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .header .subtitle {
+    font-size: 12.5px;
+    color: #5a5a5a;
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  /* Flow bar */
+  .flow-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin: 14px 0 20px;
+    font-size: 11.5px;
+    color: #4a4a4a;
+    font-weight: 600;
+  }
+  .flow-bar span { color: #9a9a9a; font-weight: 400; }
+  .flow-label {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    color: #333;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 16px 0;
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 15px;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    border-radius: 14px 0 0 14px;
+  }
+  .card.green::before  { background: #2D6A4F; }
+  .card.teal::before   { background: #4AABA5; }
+  .card.olive::before  { background: #6B8C52; }
+  .card.brown::before  { background: #8B6F47; }
+  .card.blue::before   { background: #4A7FB5; }
+  .card.red::before    { background: #C84B31; }
+  .card.gray::before   { background: #888; }
+
+  .card-inner { padding-left: 6px; }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .floor-badge {
+    background: #F2EDE4;
+    color: #333;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    min-width: 44px;
+    text-align: center;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.25;
+  }
+  .card-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+  .store-name {
+    font-size: 12px;
+    color: #2D6A4F;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-task {
+    font-size: 12.5px;
+    color: #444;
+    line-height: 1.55;
+  }
+  .card-note {
+    font-size: 11.5px;
+    color: #777;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* Split row */
+  .split-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .split-row .card { height: 100%; }
+
+  /* Connector arrow */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 0;
+    color: #aaa;
+    font-size: 11px;
+    gap: 2px;
+  }
+  .connector .arrow { font-size: 18px; color: #bbb; line-height: 1; }
+
+  /* Yodobashi special */
+  .yodobashi-card {
+    background: #EAF3FF;
+    border: 2px dashed #4A7FB5;
+    border-radius: 14px;
+    padding: 13px 15px;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .yodobashi-badge {
+    display: inline-block;
+    background: #4A7FB5;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+  .yodobashi-card .card-title { color: #1a3a5c; }
+
+  /* Collection point */
+  .collect-card {
+    background: #fff5f3;
+    border: 2px solid #C84B31;
+    border-radius: 14px;
+    padding: 13px 15px;
+  }
+  .collect-card .card-title { color: #C84B31; }
+  .collect-time {
+    display: inline-block;
+    background: #C84B31;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 3px 12px;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+
+  /* Supermarket */
+  .super-card {
+    background: #f7f7f7;
+    border-radius: 14px;
+    padding: 13px 15px;
+    border: 1px solid #e5e5e5;
+  }
+
+  /* Walkway note */
+  .walkway-note {
+    background: #EAF3FF;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    color: #2a5a8a;
+    font-weight: 600;
+    text-align: center;
+    margin: 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 24px;
+  }
+  .tips-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-top: 18px;
+    border: 1px solid #e8e8e8;
+  }
+  .tips-box h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #2D6A4F;
+    margin-bottom: 8px;
+  }
+  .tip-item {
+    font-size: 12px;
+    color: #444;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 1.5;
+  }
+  .tip-item:last-child { border-bottom: none; }
+  .tip-item::before { content: '📌 '; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">適合 13 人分流行動</div>
+  <h1>LINKS UMEDA<br>重點戰區對照表</h1>
+  <div class="subtitle">梅田逛街分流攻略｜先吃飯、再分流、一路往下逛、最後集合</div>
+</div>
+
+<div class="flow-bar">
+  <span class="flow-label">🍽 8F吃飯</span>
+  <span>→</span>
+  <span class="flow-label">🎣/🏔 7F/6F分流</span>
+  <span>→</span>
+  <span class="flow-label">👟 4F</span>
+  <span>→</span>
+  <span class="flow-label">👕 3F/1-2F</span>
+  <span>→</span>
+  <span class="flow-label">🏪 電器</span>
+  <span>→</span>
+  <span class="flow-label">📍集合</span>
+</div>
+
+<div class="divider"></div>
+
+<!-- 8F 餐廳 -->
+<div class="card green">
+  <div class="card-inner">
+    <div class="card-header">
+      <div class="card-icon">🍽</div>
+      <div>
+        <div class="floor-badge">8F</div>
+      </div>
+      <div class="card-title">先吃飯</div>
+    </div>
+    <div class="store-name">LINKS DINING 餐廳區</div>
+    <div class="card-task">先登記候位，13 人可拆成 2–3 組用餐。</div>
+  </div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+  <div style="font-size:11px; color:#999;">吃完直接往下走</div>
+</div>
+
+<!-- 7F/6F 分流 -->
+<div class="split-row">
+  <div class="card teal">
+    <div class="card-inner">
+      <div class="card-header">
+        <div class="card-icon">🎣</div>
+        <div class="floor-badge">7F</div>
+      </div>
+      <div class="card-title">釣具區</div>
+      <div class="store-name">Bunbun<br>（つり具のブンブン）</div>
+      <div class="card-task">釣具採買。</div>
+    </div>
+  </div>
+  <div class="card olive">
+    <div class="card-inner">
+      <div class="card-header">
+        <div class="card-icon">🏔</div>
+        <div class="floor-badge">6F</div>
+      </div>
+      <div class="card-title">戶外運動用品區</div>
+      <div class="store-name">石井體育<br>（Ishii Sports）</div>
+      <div class="card-task">戶外鞋、機能服、背包、運動用品。</div>
+      <div class="card-note">可看日本才有的排汗衫 finetrack。</div>
+    </div>
+  </div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+  <div style="font-size:11px; color:#999;">搭手扶梯往下</div>
+</div>
+
+<!-- 4F 鞋類 + coen -->
+<div class="card brown">
+  <div class="card-inner">
+    <div class="card-header">
+      <div class="card-icon">👟</div>
+      <div class="floor-badge">4F</div>
+      <div class="card-title">鞋類集中戰區 + coen</div>
+    </div>
+    <div class="store-name">ABC-MART GRAND STAGE　&　coen</div>
+    <div class="card-task">集中買大人、小孩運動鞋與休閒鞋。coen 日系選品服飾，可以逛逛。</div>
+  </div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+</div>
+
+<!-- 3F 雜貨 -->
+<div class="card gray">
+  <div class="card-inner">
+    <div class="card-header">
+      <div class="card-icon">🛍</div>
+      <div class="floor-badge">3F</div>
+      <div class="card-title">平價雜貨＋服飾區</div>
+    </div>
+    <div class="store-name">3COINS、GU</div>
+    <div class="card-task">生活小物、平價流行服飾。</div>
+  </div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+</div>
+
+<!-- 1F-2F UNIQLO -->
+<div class="card green">
+  <div class="card-inner">
+    <div class="card-header">
+      <div class="card-icon">👕</div>
+      <div class="floor-badge">1–2F</div>
+      <div class="card-title">全家服飾主力區</div>
+    </div>
+    <div class="store-name">UNIQLO UMEDA（西日本最大旗艦店）</div>
+    <div class="card-task">一次補齊全家服飾。1F、2F 打通，手扶梯可互通。</div>
+  </div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+  <div class="walkway-note">🚶 各樓層有連通道可直接走去 Yodobashi Camera，不需出戶外</div>
+</div>
+
+<!-- Yodobashi Camera -->
+<div class="yodobashi-card">
+  <div class="yodobashi-badge">🏬 走連通道→同棟大樓</div>
+  <div class="card-header" style="margin-top:4px;">
+    <div class="card-icon">📷</div>
+    <div class="card-title" style="color:#1a3a5c;">Yodobashi Camera</div>
+  </div>
+  <div class="store-name" style="color:#2a5a8a;">家電・相機・遊戲・日用品</div>
+  <div class="card-task" style="color:#333;">帶護照辦免稅（免稅門檻 ¥5,000）。<br>虎牌電鍋等大件優先；Switch 遊戲、相機配件、美妝家電都在這。</div>
+  <div class="card-note" style="color:#555;">退稅建議集中在這裡辦，避免分散。</div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+  <div style="font-size:11px; color:#999;">走回 LINKS UMEDA 1F</div>
+</div>
+
+<!-- 集合點 -->
+<div class="collect-card">
+  <div class="card-header">
+    <div class="card-icon">📍</div>
+    <div class="card-title">最終集合點</div>
+  </div>
+  <div class="card-task">全員逛完先回 LINKS UMEDA 1F，再搭電梯到 7F 集合。</div>
+  <div class="collect-time">⏰ 7F 電梯口　15:20 集合</div>
+  <div class="card-note" style="margin-top:6px;">走散不找人，直接走到集合點等。</div>
+</div>
+
+<div class="connector">
+  <div class="arrow">↓</div>
+  <div style="font-size:11px; color:#999;">有時間的話</div>
+</div>
+
+<!-- B2 超市 -->
+<div class="super-card">
+  <div class="card-header">
+    <div class="card-icon">🧺</div>
+    <div class="floor-badge" style="background:#eee;">B2</div>
+    <div class="card-title" style="color:#555;">超市自由補給區</div>
+  </div>
+  <div class="store-name" style="color:#777;">Harves（ハーベス）</div>
+  <div class="card-task" style="color:#666;">讓有興趣的人逛超市，補零食、飲料、便當與民生用品。</div>
+</div>
+
+<!-- Tips -->
+<div class="tips-box">
+  <h3>🗒 主持人提醒</h3>
+  <div class="tip-item">入館後直接搭電梯上 8F，立刻登記候位</div>
+  <div class="tip-item">宣布集合點：LINKS UMEDA 7F 電梯口，15:20 集合，走散不找人</div>
+  <div class="tip-item">Yodobashi Camera 退稅帶護照，大型電器優先（虎牌電鍋等）</div>
+  <div class="tip-item">7F 除 Bunbun 釣具外，另有 ニトリ（大型家居）可逛</div>
+  <div class="tip-item">有孩子的組別建議在 UNIQLO 1F 先集合，再去 Yodobashi</div>
+</div>
+
+<div class="footer">
+  <div style="margin-top:8px;">D4 ｜ 2026.7.21（二）｜ 大阪城 → 梅田</div>
+</div>
+
+</body>
+</html>
